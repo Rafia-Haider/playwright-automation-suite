@@ -15,5 +15,5 @@ test("Product shows in cart after adding", async({page})=>{
 
     await cartPage.goto();
     const productNames = await cartPage.getCartProductNames();
-    expect(productNames.some(name => name.includes("Blue Top"))).toBeTruthy();
+    await expect(productNames.some(name => name.includes("Blue Top"))).toBeTruthy();
 })

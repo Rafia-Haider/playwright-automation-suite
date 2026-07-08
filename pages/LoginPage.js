@@ -7,18 +7,21 @@ class LoginPage{
         this.passwordInput = page.getByTestId('login-password');
         this.loginButton = page.getByTestId('login-button');
         this.loggedInText = page.getByText('Logged in as');
+        this.logoutLink = page.getByRole('link', { name: 'Logout' });
     }
     async goto(){
         await this.page.goto("https://automationexercise.com/")
         await this.loginLink.click()
     }
-
+    
     async login(email,password){
         await this.emailInput.fill(email)
         await this.passwordInput.fill(password);
         await this.loginButton.click();
     }
-
+    async logout(){
+        await this.logoutLink.click()
+    }
 }
 
 module.exports = { LoginPage };
