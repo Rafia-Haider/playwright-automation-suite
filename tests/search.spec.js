@@ -4,7 +4,6 @@ const {SearchPage} = require("../pages/SearchPage")
 test("User can search a product",async({page})=>{
     const searchPage= new SearchPage(page);
 
-    await page.goto("https://automationexercise.com/products")
     await searchPage.searchFor("Blue Top");
 
     const names = await searchPage.getProductNames();
