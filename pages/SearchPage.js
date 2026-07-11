@@ -5,12 +5,10 @@ class SearchPage{
         this.searchButton = page.locator("#submit_search");
         this.productNames = page.locator('.productinfo p');
     }
-
+    
     async goto() {
     await this.page.goto('https://automationexercise.com/products');
-    await this.page.waitForLoadState('domcontentloaded');
-}
-
+    }   
 
     async searchFor(item){
         await this.searchBar.fill(item);
