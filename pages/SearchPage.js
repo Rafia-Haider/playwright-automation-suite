@@ -20,10 +20,10 @@ class SearchPage{
     }
 
     async addProductToCart(productName) {
-    await this.page.locator('.productinfo', { hasText: productName })
-              .locator('.add-to-cart')
-              .click();
-    }
+    const product = this.page.locator('.productinfo', { hasText: productName });
+    await product.hover();
+    await product.locator('.add-to-cart').click({ force: true });
+}
 }
 
 module.exports = {SearchPage}
