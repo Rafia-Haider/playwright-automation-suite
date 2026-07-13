@@ -4,6 +4,7 @@ class SignupPage{
         this.nameInput = page.getByTestId('signup-name')
         this.emailInput   = page.getByTestId('signup-email');
         this.signupButton = page.getByTestId('signup-button');
+        this.errorMessage = page.getByText('Email Address already exist!');
     }
 
     async signup(name, email){

@@ -8,6 +8,7 @@ class LoginPage{
         this.loginButton = page.getByTestId('login-button');
         this.loggedInText = page.getByText('Logged in as');
         this.logoutLink = page.getByRole('link', { name: 'Logout' });
+        this.errorMessage = page.getByText('Your email or password is incorrect!');
     }
     async goto(){
         await this.page.goto("https://automationexercise.com/")

@@ -2,6 +2,10 @@ const { test, expect } = require('@playwright/test');
 const { LoginPage } = require('../pages/LoginPage');
 require('dotenv').config();
 
+
+test.describe('Hybrid API + UI', () => {
+
+
 test('Create user via API then login via UI', async ({ page, request }) => {
 
   const email = `rafiahaider${Date.now()}@test.com`;
@@ -40,5 +44,6 @@ test('Create user via API then login via UI', async ({ page, request }) => {
   await loginPage.login(email, password);
 
   await expect(loginPage.loggedInText).toBeVisible();
-
 });
+
+})

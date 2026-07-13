@@ -3,6 +3,8 @@ require('dotenv').config()
 const {test,expect} = require('@playwright/test')
 const { LoginPage } = require('../pages/LoginPage');
 
+test.describe('Login', () => {
+
 
 test("user can login with valid credentials", async({page})=>{
     const loginPage = new LoginPage(page);
@@ -13,4 +15,14 @@ test("user can login with valid credentials", async({page})=>{
   await loginPage.login(process.env.TEST_EMAIL, process.env.TEST_PASSWORD);
 
   await expect(loginPage.loggedInText).toBeVisible();
+})
+
+test('Login fails with invalid credentials', async ({ page }) => {
+    const loginPage = new LoginPage(page);
+
+    await loginPage.goto();
+    await loginPage.login('wrong@email.com', 'wrongpassword');
+
+    await expect(loginPage.errorMessage).toBeVisible();
+});
 })

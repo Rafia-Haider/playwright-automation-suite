@@ -1,11 +1,15 @@
+require('dotenv').config()
+
 const {test, expect} = require('@playwright/test')
 
 const {LoginPage} = require('../pages/LoginPage')
 const {RegisterPage} = require('../pages/RegisterPage')
 const {SignupPage} = require('../pages/SignupPage')
-const { Sign } = require('node:crypto')
 
-test('User can regiter a new Account',async({page}) =>{
+test.describe('Signup', () => {
+
+
+test('User can register a new Account',async({page}) =>{
     const email = `testuser${Date.now()}@test.com`;
 
     const loginPage = new LoginPage(page)
@@ -33,4 +37,16 @@ test('User can regiter a new Account',async({page}) =>{
     })
 
     await expect(page.getByText('Account Created!')).toBeVisible();
+})
+
+test('Signup fails with existing email', async ({ page }) => {
+    const loginPage = new LoginPage(page)
+    await loginPage.goto();
+
+    const signupPage = new SignupPage(page)
+    await signupPage.signup('Rafia Haider', process.env.TEST_EMAIL)
+
+    await expect(signupPage.errorMessage).toBeVisible();
+});
+
 })

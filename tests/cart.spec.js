@@ -3,6 +3,9 @@ const {SearchPage} = require("../pages/SearchPage")
 const {CartModal} = require("../pages/CartModal")
 const {CartPage } = require("../pages/CartPage")
 
+test.describe('Cart', () => {
+
+
 test("Product shows in cart after adding", async({page})=>{
     const searchPage = new SearchPage(page);
     const cartModal = new CartModal(page);
@@ -16,4 +19,6 @@ test("Product shows in cart after adding", async({page})=>{
     await cartPage.goto();
     const productNames = await cartPage.getCartProductNames();
     await expect(productNames.some(name => name.includes("Blue Top"))).toBeTruthy();
+})
+
 })

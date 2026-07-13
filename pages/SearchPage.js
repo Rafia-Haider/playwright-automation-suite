@@ -12,6 +12,7 @@ class SearchPage{
 
     async searchFor(item){
         await this.searchBar.fill(item);
+        await this.searchButton.waitFor({ state: 'visible' });
         await this.searchButton.click();
     }
 
@@ -20,10 +21,14 @@ class SearchPage{
     }
 
     async addProductToCart(productName) {
-    const product = this.page.locator('.productinfo', { hasText: productName });
-    await product.hover();
-    await product.locator('.add-to-cart').click({ force: true });
-}
+        const product = this.page.locator('.productinfo', { hasText: productName });
+        await product.hover();
+        await product.locator('.add-to-cart').click({ force: true });
+    }
+
+    async getProductCount() {
+        return await this.productNames.count();
+    }
 }
 
 module.exports = {SearchPage}
