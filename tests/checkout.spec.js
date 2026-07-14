@@ -22,6 +22,7 @@ test.describe('Checkout', () => {
         // Place order on checkout page
         await page.goto('https://automationexercise.com/checkout');
         await page.locator('.check_out').click();
+        await page.waitForURL('**/payment**');  
 
         // Fill payment
         const paymentPage = new PaymentPage(page);

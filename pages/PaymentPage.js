@@ -11,6 +11,7 @@ class PaymentPage {
     }
 
     async fillPayment(data) {
+        await this.page.waitForLoadState('domcontentloaded');
         await this.nameOnCard.fill(data.name);
         await this.cardNumber.fill(data.cardNumber);
         await this.cvc.fill(data.cvc);
