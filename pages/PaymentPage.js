@@ -20,5 +20,4 @@ class PaymentPage {
         await this.payButton.click();
     }
 }
-
 module.exports = { PaymentPage };
